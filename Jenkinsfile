@@ -12,13 +12,13 @@ pipeline {
 
         stage('Unit Test') {
             steps {
-                sh "npm test:unit"
+                sh "npm run test:unit"
             }
         }
 
         stage('Integration Test') {
             steps {
-                sh "npm test:integration"
+                sh "npm run test:integration"
             }
         }
     }
