@@ -1,6 +1,5 @@
 # ui-express-app
-Sample NodeJS Express application for building UIs
-
+Sample NodeJS Express application for building UIs. Demo of setting up a CI/CD pipeline. 
 
 ## Building
 
