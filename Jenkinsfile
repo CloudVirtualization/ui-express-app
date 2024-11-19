@@ -7,6 +7,7 @@ pipeline {
         nodejs '18.17.0'
     }
     stages {
+        
         stage('Build') {
             steps {
                 sh "npm install"
@@ -35,6 +36,14 @@ pipeline {
             steps {
                 withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'binary-script-creds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                     sh 'aws s3 cp expressapp.zip s3://${S3_BUCKET}/'
+                }    
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'binary-script-creds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+                    sh 'aws elasticbeanstalk update-application ...'
                 }    
             }
         }
